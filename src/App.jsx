@@ -68,16 +68,14 @@ function TodoApp() {
         <div className="py-8">
           <div className="w-full max-w-2xl mx-auto shadow-md rounded-lg px-4 py-3 text-white">
             <h1 className="text-2xl font-bold text-center mb-8 mt-2">
-              Manage Your Todos
+              Manage Your Tasks
             </h1>
             <div className="mb-4">
               <TodoForm />
             </div>
 
-            {/* Task Filter Component */}
             <TodoFilter filter={filter} setFilter={setFilter} />
 
-            {/* Task Counter */}
             <div className="flex justify-between items-center mb-4 text-sm text-gray-300">
               <span>
                 {filteredTodos.length}{" "}

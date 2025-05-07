@@ -9,17 +9,16 @@ export const AuthContext = createContext({
   logout: () => {},
 });
 
-// Custom hook to use the auth context
+// Custom hook 
 export const useAuth = () => {
   return useContext(AuthContext);
 };
 
-// Provider component to wrap application with auth context
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
 
-  // Load user from localStorage on initial render
+  // Load user from localStorage 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     const storedAuth = localStorage.getItem("isAuthenticated");
@@ -30,7 +29,7 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  // Update localStorage when auth state changes
+  // Update localStorage 
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("isAuthenticated", JSON.stringify(isAuthenticated));
@@ -38,9 +37,6 @@ export const AuthProvider = ({ children }) => {
 
   // Login function
   const login = (email, password) => {
-    // In a real app, you would validate against a backend
-    // For demo purposes, we'll accept any email/password combo
-    // that matches a registered user
     const users = JSON.parse(localStorage.getItem("users") || "[]");
     const foundUser = users.find(
       (u) => u.email === email && u.password === password
@@ -56,8 +52,6 @@ export const AuthProvider = ({ children }) => {
 
   // Register function
   const register = (name, email, password) => {
-    // In a real app, you would send this to a backend
-    // For demo purposes, we'll store in localStorage
     const users = JSON.parse(localStorage.getItem("users") || "[]");
 
     // Check if user already exists
