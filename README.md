@@ -1,7 +1,7 @@
 Stealth_Project
 Stealth_Project is a React-based task management application designed to help you track your progress on any given task. With this app, you can easily add, track, edit, and delete tasks, as well as mark them as completed.
 
-Features
+Features:
 User Registration: Create an account and securely log in to start tracking your tasks.
 
 Task Management: Add, update, and delete tasks as you progress.
@@ -13,39 +13,12 @@ Real-time Updates: Get instant feedback on the status of your tasks.
 Live Demo
 You can view the live version of the project here. https://stealth-project.vercel.app/
 
-Installation
-Clone the repository:
-
-bash
-Copy
-Edit
-git clone https://github.com/krishjaiswal09/Stealth_Project.git
-Navigate to the project directory:
-
-bash
-Copy
-Edit
-cd Stealth_Project
-Install the required dependencies:
-
-bash
-Copy
-Edit
-npm install
-Start the application:
-
-bash
-Copy
-Edit
-npm start
-The app will run on http://localhost:3000.
-
 Usage
 Register: If you're a new user, click on the "Register" button and create an account.
 
 Login: Once registered, log in with your credentials.
 
-Add a Task: Click on the "Add Task" button and provide the task details so you can add it to your list.
+Add a Task: Click on the "Add Task" button and provide the task details to add it to your list.
 
 Track Progress: You can view your tasks, mark them as completed, or edit them as needed.
 
@@ -53,22 +26,3 @@ Edit/Delete Tasks: You can edit or delete tasks by clicking the buttons next to 
 
 Technologies Used
 Frontend: React, React Hooks, Context API, Tailwind CSS
-
-Backend: [Insert Backend details here if applicable, like Node.js, Express, etc.]
-
-Authentication: JWT-based authentication
-
-Database: [Insert database details here if applicable, like MongoDB]
-
-Contributing
-We welcome contributions to the project! To contribute:
-
-Fork the repository.
-
-Create a new branch: git checkout -b feature-name.
-
-Make your changes and commit them: git commit -m 'Add new feature'.
-
-Push to the branch: git push origin feature-name.
-
-Open a pull request.
