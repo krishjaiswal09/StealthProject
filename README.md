@@ -26,3 +26,4 @@ Edit/Delete Tasks: You can edit or delete tasks by clicking the buttons next to 
 
 Technologies Used
 Frontend: React, React Hooks, Context API, Tailwind CSS
+How to run it locally: Fork the code in you're system and then npm i & npm run dev 
