@@ -28,7 +28,7 @@ A full-stack task management application built with React, Node.js, Express, and
 
 3. Start the server:
    ```bash
-   npm run dev
+   npm start
    ```
 
 ### Frontend Setup
