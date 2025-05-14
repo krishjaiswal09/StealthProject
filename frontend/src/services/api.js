@@ -2,12 +2,13 @@ import axios from 'axios';
 
 const API_URL = 'https://stealthproject-1.onrender.com/api';
 
-// Create axios instance
 const api = axios.create({
   baseURL: API_URL,
   headers: {
-    'Content-Type': 'application/json'
-  }
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
+  },
+  withCredentials: false  // Changed to false since we're using token auth
 });
 
 // Add request interceptor to include auth token
@@ -25,8 +26,8 @@ api.interceptors.request.use(
 // Auth API
 export const authAPI = {
   register: (userData) => api.post('/users', userData),
-  login: (credentials) => api.post('/users/login', credentials),
-  getProfile: () => api.get('/users/profile')
+  login: (credentials) => api.post('/auth/login', credentials),
+  getProfile: () => api.get('/users/me')
 };
 
 // Tasks API
@@ -38,4 +39,4 @@ export const tasksAPI = {
   deleteTask: (id) => api.delete(`/tasks/${id}`)
 };
 
-export default api; 
+export default api;
