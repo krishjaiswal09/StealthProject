@@ -61,7 +61,7 @@ A full-stack task management application built with React, Node.js, Express, and
 
 ```bash
 cd backend
-npm run start
+npm start
 ```
 
 ### Frontend
