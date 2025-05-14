@@ -33,12 +33,20 @@ app.use((req, res, next) => {
   next();
 });
 
-// Routes
+// API Routes with proper prefixes
 app.use('/api/users', userRoutes);
 app.use('/api/tasks', taskRoutes);
 
 // Health check endpoint
 app.get('/', (req, res) => {
+  res.json({ 
+    message: 'API is running',
+    timestamp: new Date().toISOString()
+  });
+});
+
+// Add API status endpoint
+app.get('/api', (req, res) => {
   res.json({ 
     message: 'API is running',
     timestamp: new Date().toISOString()
@@ -69,8 +77,8 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = config.PORT;
-app.listen(PORT, () => {
-  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
+const server = app.listen(PORT, () => {
+  console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
   console.log(`Health check available at http://localhost:${PORT}`);
 });
 

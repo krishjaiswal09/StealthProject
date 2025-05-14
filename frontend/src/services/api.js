@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://stealthproject-1.onrender.com/api';
+const API_URL = 'http://localhost:5050/api';
 
 const api = axios.create({
   baseURL: API_URL,
@@ -8,7 +8,7 @@ const api = axios.create({
     'Content-Type': 'application/json',
     'Accept': 'application/json'
   },
-  withCredentials: false  // Changed to false since we're using token auth
+  withCredentials: false  // Using token auth instead of cookies
 });
 
 // Add request interceptor to include auth token
@@ -23,11 +23,25 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
+// Add response interceptor to handle errors globally
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    // Handle token expiration or unauthorized access
+    if (error.response && error.response.status === 401) {
+      localStorage.removeItem('token');
+      // Optionally redirect to login page or dispatch an action
+      window.location.href = '/';
+    }
+    return Promise.reject(error);
+  }
+);
+
 // Auth API
 export const authAPI = {
   register: (userData) => api.post('/users', userData),
-  login: (credentials) => api.post('/auth/login', credentials),
-  getProfile: () => api.get('/users/me')
+  login: (credentials) => api.post('/users/login', credentials),
+  getProfile: () => api.get('/users/profile')
 };
 
 // Tasks API
