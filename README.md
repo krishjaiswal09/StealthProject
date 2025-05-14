@@ -26,14 +26,7 @@ A full-stack task management application built with React, Node.js, Express, and
    npm install
    ```
 
-3. Create a `.env` file in the backend directory with the following variables:
-   ```
-   PORT=5050
-   MONGODB_URI=mongodb://localhost:27017/taskmanagement
-   JWT_SECRET=your_jwt_secret_key
-   ```
-
-4. Start the server:
+3. Start the server:
    ```bash
    npm run dev
    ```
