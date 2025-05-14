@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 // API URL configuration based on environment
-// For production, replace with your Render backend URL
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5050/api';
+// Using the Render backend URL as default
+const API_URL = import.meta.env.VITE_API_URL || 'https://stealthproject.onrender.com/api';
 
 console.log('Using API URL:', API_URL);
 
