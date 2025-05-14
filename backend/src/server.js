@@ -17,6 +17,7 @@ const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:4173', // Vite preview
   'https://yourtaskapp.vercel.app', // Replace with your frontend URL
+  'https://frontend-g1l73yh8g-krish-jaiswals-projects.vercel.app', // New Vercel frontend URL
   // Add any other origins as needed
 ];
 
@@ -26,7 +27,9 @@ const corsOptions = {
     // Allow requests with no origin (like mobile apps, curl, etc)
     if (!origin) return callback(null, true);
     
-    if (allowedOrigins.indexOf(origin) !== -1 || process.env.NODE_ENV === 'development') {
+    if (allowedOrigins.indexOf(origin) !== -1 || 
+        process.env.NODE_ENV === 'development' || 
+        origin.endsWith('vercel.app')) {
       callback(null, true);
     } else {
       console.log('CORS blocked origin:', origin);
