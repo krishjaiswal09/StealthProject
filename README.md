@@ -73,6 +73,41 @@ npm run build
 
 The build artifacts will be stored in the `frontend/dist` directory.
 
+## Deployment
+
+### Deploying Backend to Render
+
+1. **Create a Render account**:
+   - Sign up at [render.com](https://render.com) if you don't already have an account
+
+2. **Set up a Web Service**:
+   - From the Render dashboard, click "New" and select "Web Service"
+   - Connect your GitHub repository (or use manual deploy with the Render CLI)
+   - Configure the service:
+     - Name: `task-management-backend` (or your preferred name)
+     - Environment: `Node`
+     - Build Command: `cd backend && npm install`
+     - Start Command: `cd backend && npm start`
+
+3. **Configure Environment Variables**:
+   - Under the "Environment" tab, add the following variables:
+     - `PORT`: `10000` (Render assigns a port via PORT env var)
+     - `NODE_ENV`: `production`
+     - `MONGODB_URI`: Your MongoDB connection string (use MongoDB Atlas for production)
+     - `JWT_SECRET`: A secure random string for JWT token signing
+
+4. **Deploy**:
+   - Click "Create Web Service"
+   - Wait for the build and deployment to complete
+
+5. **Verify Deployment**:
+   - Once deployed, visit your service URL (e.g., `https://task-management-backend.onrender.com`)
+   - You should see the API health check response
+
+### Deploying Frontend
+
+For frontend deployment, you can use Vercel, Netlify, or GitHub Pages. Update the API_URL in the frontend to point to your Render backend URL.
+
 ## Troubleshooting
 
 ### "Uncaught (in promise) Error: A listener indicated an asynchronous response by returning true..."
@@ -98,6 +133,13 @@ If the server can't connect to MongoDB:
 1. Ensure MongoDB is running
 2. Check the `MONGODB_URI` in your `.env` file
 3. Verify network access if using MongoDB Atlas
+
+### Render Deployment Issues
+
+1. Check the Render logs for error messages
+2. Ensure all environment variables are set correctly
+3. Verify your MongoDB Atlas IP allowlist includes Render's IPs (or set it to allow access from anywhere)
+4. Make sure your start command is correct: `cd backend && npm start`
 
 ## License
 

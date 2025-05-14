@@ -5,15 +5,34 @@ import connectDB from '../config/db.js';
 import config from '../config/config.js';
 import userRoutes from './routes/userRoutes.js';
 import taskRoutes from './routes/taskRoutes.js';
+import 'dotenv/config';
 
 // Connect to MongoDB
 connectDB();
 
 const app = express();
 
+// Dynamic origins for CORS to support both local and production environments
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:4173', // Vite preview
+  'https://yourtaskapp.vercel.app', // Replace with your frontend URL
+  // Add any other origins as needed
+];
+
 // Enhanced CORS configuration
 const corsOptions = {
-  origin: ['http://localhost:5173', 'https://your-production-frontend.com'],
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps, curl, etc)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) !== -1 || process.env.NODE_ENV === 'development') {
+      callback(null, true);
+    } else {
+      console.log('CORS blocked origin:', origin);
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: false
@@ -41,7 +60,8 @@ app.use('/api/tasks', taskRoutes);
 app.get('/', (req, res) => {
   res.json({ 
     message: 'API is running',
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
+    env: process.env.NODE_ENV
   });
 });
 
@@ -49,7 +69,8 @@ app.get('/', (req, res) => {
 app.get('/api', (req, res) => {
   res.json({ 
     message: 'API is running',
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
+    env: process.env.NODE_ENV
   });
 });
 
